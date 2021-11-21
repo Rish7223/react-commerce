@@ -6,13 +6,14 @@ import { FaArrowLeft } from "react-icons/fa"
 import { useRouter } from "next/router"
 import { useEffect } from "react"
 import { useAuthContext } from "../contexts/AuthContext"
-import { fireAuth } from "../firebase"
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth"
 
 const Auth = () => {
-  const { isAuthenticated, authLoading, authenticateUser } = useAuthContext()
+  const { isAuthenticated, authLoading, authenticateUser, onAuthChange } =
+    useAuthContext()
   const router = useRouter()
+
   useEffect(() => {
+    onAuthChange()
     if (isAuthenticated !== null && isAuthenticated) {
       router.push("/")
     }
@@ -31,8 +32,9 @@ const Auth = () => {
           content="Auth | E-commerce web app build upon NextJs"
         />
       </Head>
+
       <Link href="/">
-        <a className="absolute top-20 left-40 flex items-center gap-4   ">
+        <a className="absolute top-20 left-20 flex items-center gap-4   ">
           <FaArrowLeft size={30} />
           <p className="text-xl text-black font-semibold">Go Back</p>
         </a>

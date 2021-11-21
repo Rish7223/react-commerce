@@ -1,10 +1,13 @@
 import AuthProvider from "../contexts/AuthContext"
+import CartContextProvider from "../contexts/CartContext"
 import "../styles/globals.css"
 
 function MyApp({ Component, pageProps }) {
   return (
     <AuthProvider>
-      <Component {...pageProps} />
+      <CartContextProvider>
+        <Component {...pageProps} />
+      </CartContextProvider>
     </AuthProvider>
   )
 }

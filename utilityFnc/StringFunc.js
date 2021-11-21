@@ -1,3 +1,3 @@
-export const trimString = (textString) => {
-  return textString.slice(0, 60)
+export const trimString = (textString, number = 60) => {
+  return textString.slice(0, number)
 }

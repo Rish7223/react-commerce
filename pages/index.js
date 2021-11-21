@@ -2,6 +2,8 @@ import Head from "next/head"
 import ProductCard from "../components/block/ProductCard"
 import { PopularProducts } from "../products"
 import Navbar from "../components/UI/Navbar"
+import { useEffect } from "react"
+import { useAuthContext } from "../contexts/AuthContext"
 
 export default function Home() {
   return (

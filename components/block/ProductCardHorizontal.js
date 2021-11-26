@@ -1,10 +1,11 @@
 import Image from "next/image"
-import { trimString } from "../../utilityFnc/StringFunc"
 import { FaPlus, FaMinus } from "react-icons/fa"
 import { useState } from "react"
+import { useCartContext } from "../../contexts/CartContext"
 
 const ProductCardHorizontal = ({ productDetails }) => {
-  const { image, title, price, description } = productDetails
+  const { removeItemFromCart } = useCartContext()
+  const { image, title, price, id } = productDetails
   const [count, setCount] = useState(Number(1))
   return (
     <div className="py-4 px-4 flex  border border-gray-300 bg-white rounded-xl">
@@ -27,26 +28,28 @@ const ProductCardHorizontal = ({ productDetails }) => {
           <button
             className="border-2 border-black p-2 rounded-xl"
             onClick={() => {
-              if (count < 6) {
-                setCount(count + 1)
-              }
-            }}
-          >
-            <FaPlus size={16} className="text-black" />
-          </button>
-          <span className="text-xl font-semibold">{count}</span>
-          <button
-            className="border-2 border-black p-2 rounded-xl"
-            onClick={() => {
-              if (count > 1) {
-                setCount(count - 1)
-              }
+              // need to be added lated
             }}
           >
             <FaMinus size={16} className="text-black" />
           </button>
+          <span className="text-xl font-semibold">{count}</span>
+          <button
+            disabled
+            className="border-2 border-black p-2 rounded-xl"
+            onClick={() => {
+              // need to be added lated
+            }}
+          >
+            <FaPlus size={16} className="text-black" />
+          </button>
         </section>
-        <button className="focus-within bg-black shadow-sm text-white py-2 px-8 rounded-2xl">
+        <button
+          className="focus-within bg-black shadow-sm text-white py-2 px-8 rounded-2xl"
+          onClick={() => {
+            removeItemFromCart(id)
+          }}
+        >
           Remove
         </button>
       </div>
